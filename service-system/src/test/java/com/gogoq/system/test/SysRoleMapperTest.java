@@ -32,9 +32,9 @@ public class SysRoleMapperTest {
     @Test
     public void add(){
         SysRole s = new SysRole();
-        s.setDescription("测试案例1");
-        s.setRoleName("测试1");
-        s.setRoleCode("1");
+        s.setDescription("测试案例4");
+        s.setRoleName("测试4");
+        s.setRoleCode("4");
         int rows = sysRoleMapper.insert(s);
         System.out.println(rows);
     }
