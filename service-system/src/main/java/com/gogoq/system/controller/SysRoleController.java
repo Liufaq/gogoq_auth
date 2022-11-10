@@ -1,5 +1,6 @@
 package com.gogoq.system.controller;
 
+import com.gogoq.common.result.Result;
 import com.gogoq.system.model.system.SysRole;
 import com.gogoq.system.service.SysRoleService;
 import io.swagger.annotations.ApiOperation;
@@ -22,18 +23,22 @@ public class SysRoleController {
     //查询所有记录
     @ApiOperation("查询所有记录接口")
     @GetMapping("findAll")
-    public List<SysRole> findAllRole(){
+    public Result findAllRole(){
         //调用service
         List<SysRole> list = sysRoleService.list();
-        return list;
+        return Result.ok(list);
     }
 
     //逻辑删除
     @ApiOperation("逻辑删除接口")
     @DeleteMapping("remove/{id}")
-    public boolean removeRole(@PathVariable Long id){
-        boolean b = sysRoleService.removeById(id);
-        return b;
+    public Result removeRole(@PathVariable Long id){
+        boolean res = sysRoleService.removeById(id);
+        if(res){
+            return Result.ok();
+        }else {
+            return Result.fail();
+        }
     }
 
 
