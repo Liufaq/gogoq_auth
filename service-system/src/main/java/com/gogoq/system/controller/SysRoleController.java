@@ -56,4 +56,40 @@ public class SysRoleController {
         //返回
         return Result.ok(res);
     }
+
+    //添加角色
+    //@RequestBody 不能使用get提交
+    //传递用JSON格式 吧JSON格式封装到对象里面
+    @ApiOperation("添加")
+    @PostMapping("save")
+    public Result saveRole(@RequestBody SysRole sysRole){
+
+    boolean isSuccess = sysRoleService.save(sysRole);
+    if(isSuccess){
+        return Result.ok();
+    }else{
+        return Result.fail();
+    }
+
+    }
+
+    //修改接口  根据ID查询
+    @ApiOperation("根据ID查询结果")
+    @PostMapping("findById/{id}")
+    public Result findById(@PathVariable Long id){
+        SysRole sysRole = sysRoleService.getById(id);
+        return Result.ok(sysRole);
+    }
+    //修改接口 修改内容
+    @ApiOperation("修改内容")
+    @PostMapping("update")
+    public Result updateById(@RequestBody SysRole sysRole){
+        boolean isScuss = sysRoleService.updateById(sysRole);
+        if(isScuss){
+            return Result.ok();
+        }else{
+            return Result.fail();
+        }
+    }
+
 }
