@@ -3,6 +3,7 @@ package com.gogoq.system.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gogoq.common.result.Result;
+import com.gogoq.system.exception.GogoqException;
 import com.gogoq.system.mapper.SysRoleMapper;
 import com.gogoq.system.model.system.SysRole;
 import com.gogoq.system.model.vo.SysRoleQueryVo;
@@ -98,8 +99,15 @@ public class SysRoleController {
     @ApiOperation("批量删除")
     @DeleteMapping("batchRemove")
     public Result batchRemove(@RequestBody List<Long> idList){
+        try {
+            int a = 9/0;
+        }catch (Exception e){
+           throw new GogoqException(20001,"自定义异常");
+        }
+
         sysRoleService.removeByIds(idList);
         return Result.ok();
     }
+
 
 }
