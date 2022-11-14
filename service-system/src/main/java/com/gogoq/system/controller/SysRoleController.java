@@ -92,4 +92,14 @@ public class SysRoleController {
         }
     }
 
+
+    //批量删除
+    //多个ID{1,2,3,4} json 的数组格式对应java的集合
+    @ApiOperation("批量删除")
+    @DeleteMapping("batchRemove")
+    public Result batchRemove(@RequestBody List<Long> idList){
+        sysRoleService.removeByIds(idList);
+        return Result.ok();
+    }
+
 }
